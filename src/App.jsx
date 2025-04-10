@@ -11,11 +11,18 @@ export const tabs = [
 ];
 
 export const App = () => {
-  const [activeTabId, setActiveTabId] = useState('Tab 1');
+  const [activeTabId, setActiveTabId] = useState('tab-1');
+  let counter = 0;
+
+  for (let i = 0; i < tabs.length; i += 1) {
+    if (tabs[i].id === activeTabId) {
+      counter = i;
+    }
+  }
 
   return (
     <div className="section">
-      <h1 className="title">Selected tab is {activeTabId}</h1>
+      <h1 className="title">Selected tab is {tabs[counter].title}</h1>
 
       <div data-cy="TabsComponent">
         <div className="tabs is-boxed">
@@ -32,7 +39,7 @@ export const App = () => {
         </div>
 
         <div className="block" data-cy="TabContent">
-          Some text {activeTabId.slice(-1)}
+          {tabs[counter].content}
         </div>
       </div>
     </div>
